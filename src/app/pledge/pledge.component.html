@@ -1,0 +1,408 @@
+<app-header ></app-header>
+
+
+<section>
+  <form action="/login" [formGroup]="billform" (ngSubmit)="onSubmit(billform)">
+    <div *ngIf="alertMessage" class="alert" [ngClass]="{'success': isSuccess, 'error': !isSuccess}">
+      {{ alertMessage }}
+    </div>
+<div class="table">
+  <div class="withbutton">
+
+ 
+    <table class="mainTable">
+      <tr>
+          <td>
+            <mat-label>Pledge Date</mat-label>
+            <input matInput [matDatepicker]="dp" formControlName="billDate" style="width: 70%;">
+            <span><mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp></mat-datepicker></span>
+            <div *ngIf="billform.controls['billDate'].errors?.['required'] && (billform.controls['billDate'].touched )">
+              <div class="danger">This is required</div>
+            </div>
+            <div *ngIf="billform.controls['billDate'].errors?.['maxlength'] && (billform.controls['billDate'].touched || billform.controls['billDate'].pristine || billform.controls['billDate'].dirty)">
+              <div class="danger">Max-length is only 40 Calm down!!!</div>
+            </div>
+          </td> 
+        <td>
+            <mat-label>Bill Serial</mat-label>
+            <input #bsnoInput matInput placeholder="Enter Bill Serial" maxlength="3" required formControlName="billSerial">
+            <div *ngIf="billform.controls['billSerial'].errors?.['required'] && billform.controls['billSerial'].touched">
+              <div class="danger">This is required</div>
+            </div>
+            <div *ngIf="billform.controls['billSerial'].errors?.['maxlength'] && (billform.controls['billSerial'].touched || billform.controls['billSerial'].pristine || billform.controls['billSerial'].dirty)">
+              <div class="danger">Max-length is only 3 Calm down!!!</div>
+            </div>
+          </td>
+
+
+
+      </tr>
+      <tr>
+        <td >
+          <mat-label>Bill no.</mat-label>
+          <input matInput type="number" placeholder="00000" formControlName="billNo">
+          <div *ngIf="billform.controls['billNo'].errors?.['required'] && (billform.controls['billNo'].touched)">
+            <div class="danger">Bill Number is required</div>
+          </div>
+          <div *ngIf="billform.controls['billNo'].errors?.['maxlength'] && (billform.controls['billNo'].touched || billform.controls['billNo'].pristine || billform.controls['billNo'].dirty)">
+            <div class="danger">Max-length is only 5 Calm down!!!</div>
+          </div>
+        </td>
+
+        <td class="small">
+          <mat-label>Customer Name</mat-label>
+          <input 
+             
+            #myInput  matInput
+            formControlName="customerName"
+            [formControl]="myControl" 
+            placeholder="Enter Customer Name" 
+            [matAutocomplete]="auto" 
+            required
+          >
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onCustomerSelected($event.option.value)">
+            <mat-option *ngFor="let option of filteredOptions | async; trackBy: trackByFn" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+        </td>
+                
+        
+
+      </tr>
+      <tr>
+
+      </tr>
+      <tr>
+        <td>
+          <mat-label>Article</mat-label>
+          <mat-select formControlName="productTypeNo" >
+            <!-- (selectionChange)="onProductTypeChange($event)" -->
+            <!-- Corrected usage of trackBy -->
+            <mat-option *ngFor="let i of productOptions; trackBy: trackByFn" [value]="i.productTypeNo">
+              {{i.productTypeCode}}
+            </mat-option>
+          </mat-select>
+          <div *ngIf="billform.controls['productTypeNo'].errors?.['required'] && (billform.controls['productTypeNo'].touched)">
+            <div class="danger">Article is required</div>
+          </div>
+        </td>
+        <!-- <td *ngIf="ifOthers">
+          <mat-label>Other Material</mat-label>
+          <input matInput type="text" formControlName="newProduct">
+        </td>
+        <td *ngIf="ifOthers">
+          <mat-label>ROI</mat-label>
+          <input matInput type="text" formControlName="newROI">
+        </td> -->
+        <td>
+          <mat-label>Amount</mat-label>
+          <input matInput type="text" placeholder="0" formControlName="amount" (input)="updateAmountInWords($event)">
+          <div *ngIf="billform.controls['amount'].errors?.['required'] && (billform.controls['amount'].touched)">
+            <mat-error class="danger">Amount is required</mat-error>
+          </div>
+          <div *ngIf="billform.controls['amount'].errors?.['maxlength'] && (billform.controls['amount'].touched || billform.controls['amount'].pristine || billform.controls['amount'].dirty)">
+            <div class="danger">Max-length is only 8. Calm down!!!</div>
+          </div>
+        </td>
+      </tr>
+            <tr>
+  
+
+        <td class="small">
+          <mat-label>Weight</mat-label>
+          <input matInput type="text" placeholder="0" formControlName="grams" style="width: 80%; margin-right: 5px;" (change)="presentvalue()">
+          <span matTextSuffix>gms</span>
+          <div *ngIf="billform.controls['grams'].errors?.['required'] && (billform.controls['grams'].touched)">
+            <div class="danger">Weight is required</div>
+          </div>
+          <div *ngIf="billform.controls['grams'].errors?.['maxlength'] && (billform.controls['grams'].touched || billform.controls['grams'].pristine || billform.controls['grams'].dirty)">
+            <div class="danger">Max-length is only 7 Calm down!!!</div>
+          </div>
+        </td>
+
+        <td class="small">
+          <mat-label>Quantity</mat-label>
+          <input matInput type="text" value="1" formControlName="productQuantity">
+          <div *ngIf="billform.controls['productQuantity'].errors?.['required'] && (billform.controls['productQuantity'].touched)">
+            <div class="danger">Product Quantity is required</div>
+          </div>
+          <div *ngIf="billform.controls['productQuantity'].errors?.['maxlength'] && (billform.controls['productQuantity'].touched || billform.controls['productQuantity'].pristine || billform.controls['productQuantity'].dirty)">
+            <div class="danger">Max-length is only 3 Calm down!!!</div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+
+        </tr>
+        <tr>
+        <td colspan="2">
+          <mat-label>Item Description</mat-label>
+          <textarea matInput placeholder="Ex. One gold...."  formControlName="productDescription" maxlength="40" minlength="5" class="description"></textarea>
+          <div *ngIf="billform.controls['productDescription'].errors?.['required'] && (billform.controls['productDescription'].touched )">
+            <div class="danger">This is required</div>
+          </div>
+          <div *ngIf="billform.controls['productDescription'].errors?.['maxlength'] && (billform.controls['productDescription'].touched || billform.controls['productDescription'].pristine || billform.controls['productDescription'].dirty)">
+            <div class="danger">Max-length is only 40 Calm down!!!</div>
+          </div>
+          <div *ngIf="billform.controls['productDescription'].errors?.['minlength'] && (billform.controls['productDescription'].touched || billform.controls['productDescription'].pristine || billform.controls['productDescription'].dirty)">
+            <div class="danger">Min-length is  5 Faster!!!</div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <mat-label>Comments</mat-label>
+          <textarea matInput placeholder="Eg. 3 Months Interest Recieved" formControlName="comments" class="comments" maxlength="140" minlength="1" ></textarea>
+
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <mat-label>Old Bill Serial No</mat-label></td>
+          <td><input matInput type="string" placeholder="Enter Old Bill Serial No" formControlName="oldbillserialno" /></td>
+      </tr>
+      <tr>
+      </tr>
+    </table>
+    <div class="buttons">
+      <button mat-raised-button color="warn" type="button"   class="globalButton"(click)="submitPrint(this.billform.value, true)">Submit & Print</button>
+
+      <button mat-raised-button color="primary"  class="globalButton"type="submit">Submit</button>
+      <button mat-raised-button color="warn"  class="globalButton"(click)="resetForm()">Reset</button>
+    </div>
+    </div>
+    <table class="preview">
+      <tr  >
+      <td>
+        <mat-label>Customer Photo</mat-label>
+      </td>
+      <td>
+        <!-- <div class="photo-upload">
+          <div>
+          <div *ngIf="photoPreview" class="photo-preview">
+            <img [src]="photoPreview" alt="Customer Photo" />
+            <input type="text" formControlName="image_path" style="display:none" />
+          </div>
+          <div class="hr">
+            <hr></div>
+
+          
+            <label class="upload-container">
+              <input type="file" (change)="onFileSelected($event)" class="file-input" />
+              <span>Upload Photo</span>
+         
+            </label>
+          </div>
+        
+
+        </div> -->
+
+ 
+<div class="container"> 
+  <div class="header"> 
+    @if(photoPreview){
+      <p class="image-preview">
+        <img [src]="photoPreview" alt="Customer Photo" />
+        <input type="text"  (change)="onFileChange($event)" style="display:none" />
+
+      </p>
+      
+    }
+    @else{
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> 
+        <path d="M7 10V9C7 6.23858 9.23858 4 12 4C14.7614 4 17 6.23858 17 9V10C19.2091 10 21 11.7909 21 14C21 15.4806 20.1956 16.8084 19 17.5M7 10C4.79086 10 3 11.7909 3 14C3 15.4806 3.8044 16.8084 5 17.5M7 10C7.43285 10 7.84965 10.0688 8.24006 10.1959M12 12V21M12 12L15 15M12 12L9 15" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg> 
+        <input type="text" formControlName="image_path" (change)="onFileChange($event)" style="display:none" />
+        <p style="color: #ffffff;">Browse File to upload!</p>
+    }
+
+  </div> 
+  <label for="file" class="footer"> 
+    <svg fill="#ffffff" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M15.331 6H8.5v20h15V14.154h-8.169z"></path><path d="M18.153 6h-.009v5.342H23.5v-.002z"></path></g></svg> 
+    <p  style="color: #ffffff;">Select files</p> 
+
+
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5.16565 10.1534C5.07629 8.99181 5.99473 8 7.15975 8H16.8402C18.0053 8 18.9237 8.9918 18.8344 10.1534L18.142 19.1534C18.0619 20.1954 17.193 21 16.1479 21H7.85206C6.80699 21 5.93811 20.1954 5.85795 19.1534L5.16565 10.1534Z" stroke="#ffffff" stroke-width="2"></path> <path d="M19.5 5H4.5" stroke="#ffffff" stroke-width="2" stroke-linecap="round"></path> <path d="M10 3C10 2.44772 10.4477 2 11 2H13C13.5523 2 14 2.44772 14 3V5H10V3Z" stroke="#ffffff" stroke-width="2"></path> </g></svg>
+  </label> 
+  <input id="file" type="file" (change)="onFileChange($event)"> 
+</div>
+        
+      </td>
+    </tr>
+            <tr>
+        <td>
+          <mat-label>Customer ID</mat-label>
+        </td>
+        <td>
+          <input matInput type="number" placeholder="" [disabled]="true"  formControlName="customerid">
+        </td>
+         
+      </tr>
+      <tr>
+        <!-- <td>
+          <mat-label>Phone Number</mat-label>
+        </td>
+        <td>
+          <input matInput type="text" placeholder="0" formControlName="phoneno" (change)="getCustomerByphone($event)">
+        </td> -->
+   <td>
+    <mat-label>Phone Number</mat-label>
+  </td>
+  <td>
+    <input 
+    #myInput  matInput
+    formControlName="phoneno"
+      [formControl]="phoneControl" 
+      placeholder="Enter phone number" 
+      [matAutocomplete]="autoPhone" 
+      required
+    >
+    <mat-autocomplete #autoPhone="matAutocomplete" (optionSelected)="onPhoneSelected($event.option.value)">
+      <mat-option *ngFor="let option of filteredPhoneOptions | async; trackBy: trackByFn" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-autocomplete>
+  </td>
+  <!-- <div class="search">
+    <input #myInput type="text" matInput formControlName="name" [formControl]="myControl" placeholder="Enter Customer Name or Address" [matAutocomplete]="auto" formControlName="search">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-autocomplete>
+    <div> -->
+        
+        
+        
+      </tr>
+      <tr>
+        <td>
+          <mat-label>Customer Address</mat-label>
+        </td> 
+        <td>
+          <textarea tabindex="0" matInput placeholder="Enter Customer Address" formControlName="fullAddress"></textarea>
+          <div *ngIf="billform.controls['fullAddress'].errors?.['required'] && (billform.controls['fullAddress'].touched)">
+            <div class="danger">Address is required</div>
+          </div>
+          <div *ngIf="billform.controls['fullAddress'].errors?.['maxlength'] && (billform.controls['fullAddress'].touched || billform.controls['fullAddress'].pristine || billform.controls['fullAddress'].dirty)">
+            <div class="danger">Max-length is only 150 Calm down!!!</div>
+          </div>
+        </td>
+        
+      </tr>
+      <tr>
+        <td>
+          <mat-label>Rate Of Interest</mat-label>
+        </td>
+        <td>
+          <input matInput type="text" placeholder="Enter Interest"  formControlName="rateOfInterest">
+          <span matTextPrefix></span>
+          <div *ngIf="billform.controls['rateOfInterest'].errors?.['required'] && (billform.controls['rateOfInterest'].touched)">
+            <div class="danger">Rate of Interest is required</div>
+          </div>
+          <div *ngIf="billform.controls['rateOfInterest'].errors?.['maxlength'] && (billform.controls['rateOfInterest'].touched || billform.controls['rateOfInterest'].pristine || billform.controls['rateOfInterest'].dirty)">
+            <div class="danger">Max-length is only 3 Calm down!!!</div>
+          </div>
+        </td>
+         
+      </tr>
+      <tr>
+        <td>
+          <mat-label>Present Value</mat-label>
+        </td>
+        <td>
+          <input matInput type="text" placeholder="0" formControlName="presentValue">
+          <span matTextPrefix>₹</span>
+          <span matTextSuffix>.00</span>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <mat-label>Amount in Words</mat-label>
+        </td>
+        <td>
+          <textarea matInput tabindex="1" placeholder="Amount in words" formControlName="AmountInWords"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td><mat-label>Monthly Income</mat-label></td>
+        <td><input matInput type="text" placeholder="0" formControlName="monthlyIncome">
+        </td>
+      </tr>                                                                                                                               
+      <tr>
+        <td>
+          Select Proof Type
+        </td>
+        <td>
+          <mat-select formControlName="proofType">
+            <mat-option value="A">
+              Aadhar
+            </mat-option>
+            <mat-option value="D">
+              DrivingLiscence
+            </mat-option>
+            <mat-option value="P">
+              PanCard
+            </mat-option>
+            <mat-option value="B">
+              BankAccount
+            </mat-option>
+            <mat-option value="O">
+              Others
+            </mat-option>
+
+          </mat-select>
+        </td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <mat-label>Proof Details</mat-label>
+        </td>
+        <td>
+          <input matInput type="text" placeholder="0" formControlName="proofDetails" maxlength="40">
+        </td>
+      </tr>
+<td><mat-label>Email</mat-label></td>
+<td>
+
+      <div >
+        
+        <input type="email" matInput formControlName="mailid" 
+               placeholder="Ex. pat@example.com">
+        @if (this.billform.hasError('mailid') && !this.billform.hasError('required')) {
+          <mat-error>Please enter a valid email address</mat-error>
+        }
+
+        @if (this.billform.hasError('required')) {
+          <mat-error>Email is <strong>required</strong></mat-error>
+        }
+      </div>
+    </td>
+    <tr>
+      <td>
+      <mat-label>Total give</mat-label></td>
+    <td><input type="text" matInput  formControlName="totalgive"></td>
+    </tr>
+    <tr>
+      <td>
+      <mat-label>Interest Pledge</mat-label></td>
+    <td><input type="text" matInput  formControlName="interstpledge"></td>
+    </tr>
+
+    </table>
+  </div>
+        
+
+    
+  </form>
+
+</section>
+
+
+<app-footer></app-footer>

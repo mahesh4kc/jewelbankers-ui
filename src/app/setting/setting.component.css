@@ -1,0 +1,192 @@
+/* Dark theme CSS */
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: Arial, sans-serif;
+}
+
+/* Style for the mat-form-field to have full width */
+.example-full-width {
+  width: 100%;
+}
+
+/* Style the table */
+table.mat-elevation-z8 {
+  width: 100%;
+  background-color: #ffffff; /* White background */
+  border-collapse: collapse;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the table header */
+th.mat-header-cell {
+  background-color: #3f51b5; /* Primary color background */
+  color: white;
+  font-weight: bold;
+  text-align: left;
+  padding: 12px;
+}
+
+/* Style the table cells */
+td.mat-cell {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Style for the headers in the rows */
+td.head {
+  font-weight: bold;
+  background-color: #f5f5f5;
+  padding: 12px;
+}
+
+/* Style for the form fields inside the table */
+.mat-form-field {
+  width: 100%;
+  margin: 0;
+}
+
+/* Adjust the input fields */
+input[matInput] {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+
+
+/* Add a hover effect on table rows */
+tr.mat-row:hover {
+  background-color: #f1f1f1;
+}
+
+
+mat-form-field {
+  width: 100%;
+}
+
+input[matInput] {
+  color: #ffffff;
+  border: none;
+  border-bottom: 1px solid #757575;
+}
+
+input[matInput]::placeholder {
+color: #757575;
+}
+
+  
+
+.btn-primary {
+  background-color: #bb86fc;
+  color: #000000;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #99959e;
+}
+
+
+
+div {
+  margin-top: 20px;
+}
+
+
+tr{
+/* background-color: #3f51b5; */
+padding: 20px;
+}
+.tab{
+  padding: 50px;
+}
+table.mat-table {
+  border-collapse: collapse;
+  border: 1px #333 solid ;
+
+  border-radius: 20px;
+}
+tr{
+  background-color: #444;
+  color:white;
+  font-family: cursive;
+  text-align: center
+}
+input{
+  width: 80%;
+  background-color: #333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  background-color: #1e1e1e; /* Slightly lighter dark color for the table */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+  border: 1px solid #444444; /* Border around the entire table */
+}
+
+.input{
+  width: 80%;
+  background-color:#292727;
+  height: 60px;
+  padding: 20px;
+  border-radius: 20px;
+  border-radius: 40px;
+}
+.searchBar{
+  display: flex;
+  justify-content: center;
+  align-items: center ;
+  margin-top: 50px;
+  border-radius: 2px;
+  background-color: #292727;
+  width: 30%;
+  border-radius: 20px;
+}
+
+svg{
+  width: 25px;
+  margin-right: 20px;
+
+}
+.super{
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+.input:focus{
+  border: none;
+}
+.button{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: -70%;
+  justify-content: center;
+
+}
+
+button{
+  color: #e4d7d7;
+  margin: 40px;
+  background-color: #1e1e1e;
+}
+::ng-deep .mat-form-field-label {
+  color: red; /* Example: Change label color */
+}
+
+::ng-deep .mat-button {
+  background-color: green; /* Example: Change button background */
+}
+.buttons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

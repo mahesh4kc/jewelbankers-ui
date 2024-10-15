@@ -1,0 +1,27 @@
+<div class="form-container">
+  <p class="title">Welcome back</p>
+  <form class="form" [formGroup]="loginForm"  (ngSubmit)="login(loginForm)">
+    <input class="input" placeholder="Enter Username" maxlength="21" required formControlName="username">
+    <div *ngIf="loginForm.controls['username'].invalid && (loginForm.controls['username'].touched ||loginForm.controls['username']?.dirty) ">
+      <div *ngIf="loginForm.controls['username'].errors?.['required']">Username is required</div>
+      <div *ngIf="loginForm.controls['username'].errors?.['maxlength']">Minimum 20 characters required for Username</div>     
+    </div>
+    <input type="password" class="input"  name="" id="" placeholder="Enter password" maxlength="21" required formControlName="password">
+    <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].touched ||loginForm.controls['password']?.dirty) ">
+      <div *ngIf="loginForm.controls['password'].errors?.['required']">password is required</div>
+    </div>
+    <p class="page-link">
+      <a class="page-link-label"  href="\forget">Forgot Password?</a>
+    </p>
+    <button class="form-btn">Log in</button>
+  </form>
+  <p class="sign-up-label">
+    Don't have an account?<span class="sign-up-link">Sign up</span>
+  </p>
+  <div class="buttons-container">
+
+    <div class="google-login-button"c>
+      <span id="google-signin-button" ></span>
+    </div>
+  </div>
+</div>

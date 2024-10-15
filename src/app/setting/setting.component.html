@@ -1,0 +1,54 @@
+
+<app-header ></app-header>
+<form [formGroup]="settingForm" (ngSubmit)="onSubmit()"  (keyup.enter)="onSubmit()">
+<div class="super">
+<div class="searchBar">
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+  <input #myInput matInput class= "input"placeholder="Search Settings" formControlName="searchQuery" (input)="filteredItems($event)" />
+</div>
+</div>
+
+
+  <div class="tab">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" formArrayName="billPledgeSerial">
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="paramId">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let setting">{{ setting.paramId }}</td>
+      </ng-container>
+
+      <!-- Value Column -->
+      <ng-container matColumnDef="paramValue">
+        <th mat-header-cell *matHeaderCellDef>Value</th>
+        <td mat-cell *matCellDef="let setting; let i = index">
+          
+            <!-- formControlName now correctly binds to the specific FormControl in the FormArray -->
+            <input matInput placeholder="Update Value" [formControlName]="i" />
+
+        </td>
+      </ng-container>
+
+      <!-- Example Column -->
+      <ng-container matColumnDef="paramExample">
+        <th mat-header-cell *matHeaderCellDef>Example</th>
+        <td mat-cell *matCellDef="let setting">{{ setting.paramExample }}</td>
+      </ng-container>
+
+      <!-- Header and Row Definitions -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+<!-- <div class="button">
+  <button class="btn-btn-primary" type="submit">Submit</button>
+</div> -->
+
+
+<div class="buttons">
+  <button mat-raised-button #submitButton mat-raised-butto color="primary" class="globalButton" type="submit" (click)="onSubmit()">Submit</button>
+</div>
+
+</form>
+
+<app-footer></app-footer>

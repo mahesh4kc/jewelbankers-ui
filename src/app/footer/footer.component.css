@@ -1,0 +1,49 @@
+/* Footer styling */
+footer {
+  text-align: center;
+  padding: 15px 10px ;
+  background-color: #f1f1f1;
+  width: 80%;
+  border-radius: 20px;
+  position: relative;
+  left: 10%;
+
+}
+p{
+  text-align:left;
+  position: relative;
+  top: 5px;
+  margin-left: 3%;
+}
+h5{
+  font-size: 1.1rem;
+  position: absolute;
+  right: 80px;
+  top: 16px;
+}
+svg{
+  position: absolute;
+  top: 14px;
+  right: 28px;
+  
+}
+
+
+
+
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    header {
+      padding: 1rem; /* Adjust padding for smaller screens */
+    }
+  
+    .hero-content {
+      padding: 10px; /* Adjust padding for smaller screens */
+    }
+  
+    footer {
+      padding: 1rem 0; /* Adjust padding for smaller screens */
+    }
+  }
+  

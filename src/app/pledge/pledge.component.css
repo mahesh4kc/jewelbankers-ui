@@ -1,0 +1,376 @@
+section {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  padding: 70px;
+  border-radius: 8px;
+  margin: 30px;
+}
+mat-label {
+  color: #e0e0e0;
+  font-family: cursive;
+}
+input, textarea, mat-select {
+  border-radius: 4px;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+p{
+  text-align: center;
+  font-family: cursive;
+  font-size: larger;
+}
+mat-select .mat-select-trigger,mat-select {
+  background-color: #333; /* Same dark background */
+  color: #ffffff; /* Light text color */
+  border: 1px solid #555; 
+  border-radius: 20px;/* Border color for better visibility */
+}
+mat-option:hover {
+  background-color: #4b4646; /* Slightly lighter background on hover */
+}
+/* Optional: Style the label if needed */
+
+input[type="file"] {
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1; 
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.button{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: -70%;
+}
+td{
+  padding: 5px;
+}
+input{
+  background-color: #333333;
+  border: none;
+}
+input::content{
+  color:#ffff;
+}
+textarea{
+  background-color: #333333;
+  border: none;
+}
+textarea::content{
+  color:#ffff;
+}
+table td:nth-child(1) {
+  width: 30%; /* Adjust the width of the first column */
+}
+
+table td:nth-child(2) {
+  width: 50%; /* Adjust the width of the second column */
+}
+table{
+  width: 70%;
+  flex-grow: 0.3;
+}
+.preview{
+  width: 45%;
+  background-color: #2E2E2E;
+  border-radius: 20px;
+
+}
+.preview td{
+  padding: 10px;}
+.table{
+  display:flex;
+  gap: 50px;
+}
+.photo-upload {
+  border-radius: 10px;
+  
+  text-align: center; /* Center-align text and elements */
+  overflow: hidden; /* Hide overflow to ensure the round shape */
+  background-color: #878686; /* Optional: background color for visibility */
+}
+.photo-upload input[type="file"] {
+  background-color: #878686; /* Optional: background color for visibility */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+}
+.photo-upload .photo-preview {
+  display: flex;
+  justify-content: center; /* Center the image horizontally */
+  align-items: center; /* Center the image vertically */
+  width: 100%;
+  height: 100%;
+}
+.photo-upload {
+  text-align: center; /* Center-align text and elements */
+  position: relative; /* Position relative to place the icon */
+}
+
+.upload-icon {
+  cursor: pointer; /* Show pointer cursor to indicate clickable area */
+}
+.photo-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+}
+.photo-preview {
+  width: 100px;  /* Set width of the container */
+  height: 100px; /* Set height of the container */
+  overflow: hidden; /* Ensure any excess image is hidden */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+svg{
+  margin-top: 10px;
+}
+
+.photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the entire area while maintaining aspect ratio */
+  border-radius: 5px; /* Optional: Adds a slight rounding to the corners */
+}
+/* Hide the actual file input element */
+.upload-container input[type="file"] {
+  display: none;
+}
+
+/* Style the label that will act as the file input trigger */
+.upload-container {
+  display: inline-block;
+  padding: 12px 24px; /* Slightly larger padding for a more luxurious feel */
+  background-color: #1a1a1a; /* Dark background color */
+  color: #f1f1f1; /* Light text color for contrast */
+  border: 2px solid #4e4e4e; /* Dark border for subtle definition */
+  border-radius: 8px; /* More rounded corners for elegance */
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover and click effects */
+  font-size: 16px; /* Larger text size for better visibility */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+/* Hover effect */
+.upload-container:hover {
+  background-color: #2c2c2c; /* Slightly lighter shade on hover */
+  border-color: #6e6e6e; /* Lighten border on hover */
+}
+
+/* Active effect */
+.upload-container:active {
+  background-color: #3a3a3a; /* Even lighter shade on click */
+  transform: scale(0.98); /* Slight scale down effect for click feedback */
+  border-color: #8c8c8c; /* Lighten border on click */
+}
+
+/* Optional: Add focus effect for accessibility */
+.upload-container:focus {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.5); /* Focus ring for accessibility */
+}
+
+
+
+.upload-container svg {
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+}
+.hr{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+hr{
+  width: 100%;
+}
+
+
+
+.description{
+  height: 200px; /* Adjust the height as needed */
+    width: 100%;   /* Optional: Set the width if required */
+    resize: none;
+}
+.comments{
+  width: 100%;   /* Optional: Set the width if required */
+  height: 80px; /* Adjust the height as needed */
+  margin: 10px;
+}
+/* From Uiverse.io by Yaya12085 */ 
+.container {
+  height: 150px; /* Further reduced height */
+  width: 180px; /* Further reduced width */
+  border-radius: 8px; /* Slightly smaller border radius */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px; /* Maintain padding */
+  gap: 2px; /* Reduced gap */
+}
+
+.header {
+  flex: 1;
+  width: 100%;
+  border: 2px dashed #ffffff; /* Blue border for contrast */
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #2c2c2c; /* Darker header background */
+}
+
+.header svg {
+  height: 50px; /* Further reduced SVG height */
+}
+
+.header p {
+  text-align: center;
+  color: #ffffff; /* White text for better contrast */
+  font-size: 12px; /* Further reduced font size */
+}
+
+.footer {
+  background-color: #2c2c2c; /* Dark footer background */
+  width: 100%;
+  height: 30px; /* Maintain smaller height */
+  padding: 5px; /* Maintain padding */
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #ffffff; /* White text for better contrast */
+  border: none;
+}
+
+.footer svg {
+  height: 80%; /* Maintain size but a little smaller */
+  fill: #ffff; /* Blue fill for contrast */
+  border-radius: 50%;
+  padding: 2px;
+  cursor: pointer;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5); /* Darker shadow */
+}
+
+.footer p {
+  flex: 1;
+  text-align: center;
+  font-size: 10px; /* Further reduced font size */
+}
+
+#file {
+  display: none;
+}
+
+
+.image-preview {
+  width: 100px;          /* Fixed width */
+  height: 100px;         /* Fixed height */
+  overflow: hidden;      /* Hide any overflow */
+  border-radius: 8px;    /* Optional: rounded corners */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2c2c2c; /* Optional: background color for contrast */
+}
+
+.image-preview img {
+  width: 100%;           /* Make the image fill the container width */
+  height: 100%;          /* Make the image fill the container height */
+  object-fit: cover;     /* Scale the image to cover the entire container */
+}
+
+
+
+/* General styles for the form and table */
+
+
+.table {
+    width: 100%; /* Full width */
+    margin-bottom: 20px; /* Spacing below the table */
+}
+.preview td{
+  padding: 5px;
+}
+
+.mainTable {
+    width: 100%; /* Full width */
+    border-collapse: collapse; /* Remove gaps between cells */
+    height: 100px;
+}
+.preview{
+      height: 100px;
+
+}
+
+.mainTable td {
+    padding: 5px; /* Spacing within cells */
+    vertical-align: top; /* Aligns content at the top */
+}
+
+/* Styling labels */
+mat-label {
+    font-weight: 400; /* Make labels stand out */
+    margin-bottom: 5px; /* Spacing below labels */
+    display: block; /* Ensures labels take full width */
+}
+
+/* Input fields styling */
+input[matInput], 
+textarea[matInput], 
+mat-select {
+    width: 100%; /* Full width for inputs */
+    padding: 10px; /* Padding for inputs */
+    border: 1px solid #ccc; /* Border styling */
+    border-radius: 5px; /* Rounded corners */
+    transition: border-color 0.3s; /* Smooth transition for focus */
+}
+
+/* Focus effect for inputs */
+input[matInput]:focus, 
+textarea[matInput]:focus, 
+mat-select:focus {
+    border-color: #3e8b3e; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+    border-width: 3px;
+}
+
+
+/* Danger messages styling */
+
+
+/* Success messages styling */
+.success {
+    color: #5cb85c; /* Bootstrap success color */
+    font-size: 12px; /* Smaller font for success messages */
+}
+
+/* Comments and Description styling */
+.description, 
+.comments {
+    height: 100px; /* Fixed height for better layout */
+}
+
+/* Photo upload section styling */
+.container {
+    display: flex; /* Flexbox for layout */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center align items */
+    margin-top: 10px; /* Spacing above the container */
+}
+
+
+/* SVG icon colors */
